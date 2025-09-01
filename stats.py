@@ -40,5 +40,31 @@ def character_count(book_contents):
     
     #print(char_dictionary) #for debugging
     return char_dictionary#return the dictionary
+
+#helper function to return the num data of each dictionary
+def sort_on(items):
     
+    return items["num"]
+
+#creates list of dictionary pairs then sorts that list based on char count high->low
+#then removed all non-alphabetic pairs
+def dictionary_sort(dictionary):
+    sorted_dictionary = []
+    new_sorted_list = []
     
+    for key in dictionary:
+        sorted_dictionary.append({"char" : key, 
+                                  "num" : dictionary[key]})#creates the list of dictionary with schema {char: character, num: count}
+    
+    sorted_dictionary.sort(reverse = True, key=sort_on)#sorting list by char count high->low
+    #print(sorted_dictionary)
+    for dict in sorted_dictionary:
+        #print(dict)
+        tempstr = dict["char"]
+        
+        if(tempstr.isalpha()):#removing the non-alphabetical pairs
+            new_sorted_list.append(dict)
+            #print(dict)
+            
+    #print(new_sorted_list)        
+    return new_sorted_list
